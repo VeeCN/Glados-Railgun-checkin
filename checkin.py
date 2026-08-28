@@ -507,11 +507,10 @@ class Checker:
             if self.config.verbose:
                 log_line = line
             else:
-                log_line = f"#  f\"#{i} {res['status'  'st]}"  \"
+                log_line = f"#{i} {res['status']}"
             log_content_lines.append(log_line)
 
-        content = "\n"  \"\
-\".join(send_content_lines)
+        content = "\n".join(send_content_lines)
         log_content = "\n".join(log_content_lines)
         return title, content, log_content
 
@@ -520,7 +519,7 @@ class Checker:
 logger = init_logger()
 
 
-def main  主目录():
+def main():
     """主函数"""
     try:
         # 1. 加载配置
@@ -530,20 +529,20 @@ def main  主目录():
         if not config.cookies_list:
             logger.error(f"{LogEmoji.ERROR} 未找到有效的 Cookie, 退出程序。")
             title, content = "# 未找到 cookies!", ""
-        else:  else
-            # 2. 执行签到  # 2.
+        else:
+            # 2. 执行签到
             logger.info(f"{LogEmoji.START} 步骤 2: 执行签到")
-            checker = Checker(config)  checker = Checker(config
+            checker = Checker(config)
             checker.checkin_all()
 
             # 3. 格式化结果
             logger.info(f"{LogEmoji.START} 步骤 3: 格式化结果")
-            title, content, log_content = checker.format_results()  title, content, log_content = checker.format
+            title, content, log_content = checker.format_results()
             logger.info(f"\n{LogEmoji.END}========== 签到总结 ==========\n{title}\n{log_content}")
 
-    except Exception as e:  except Exception as e
-        logger.error(f"{LogEmoji.ERROR} 主程序执行过程中发生未预期的错误: {e}")  logger.error(f"{LogEmoji.ERROR} 主程序执行过程中发生未预期的错误: {e
-        title, content, log_content = "# 脚本执行出错", str(e), str(e)  title, content, log_content = "# 脚本执行出错", str(e), str
+    except Exception as e:
+        logger.error(f"{LogEmoji.ERROR} 主程序执行过程中发生未预期的错误: {e}")
+        title, content, log_content = "# 脚本执行出错", str(e), str(e)
 
     # 4. 发送推送
     logger.info(f"{LogEmoji.START} 步骤 4: 发送推送")
