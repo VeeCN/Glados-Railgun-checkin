@@ -8,7 +8,10 @@ on:
       - 'README.md'
       - 'imgs/**'
   schedule:
-    - cron: '0 4,10 * * *'
+    # UTC 3:23（北京 11:23）——整点 4:00 是 GitHub cron 高峰会被吞，挪到冷门时间
+    # UTC 10:00（北京 18:00）——保留，实际通常延迟半小时到一小时
+    - cron: '23 3 * * *'
+    - cron: '0 10 * * *'
 
 jobs:
   build:
